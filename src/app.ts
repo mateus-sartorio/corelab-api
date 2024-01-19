@@ -7,3 +7,5 @@ const app = express();
 void connectDB(app);
 
 app.use(express.json());
+
+app.use("/api/v1/todos", todosRouter);
