@@ -1,5 +1,9 @@
-import express from 'express'
-import { connectDB } from './utils/connect'
+import express from "express";
+import { connectDB } from "./utils/connect";
+import todosRouter from "./routes/todosRouter";
+import bodyParser from "body-parser";
 
-const app = express()
-void connectDB(app)
+const app = express();
+void connectDB(app);
+
+app.use(express.json());
