@@ -1,8 +1,5 @@
-import express from "express";
+import express from 'express'
+import { connectDB } from './utils/connect'
 
-const PORT = 3000;
-
-const app = express();
-app.listen(PORT, () => {
-  console.log(`Connected to db. Listening on port ${PORT}`);
-});
+const app = express()
+void connectDB(app)
