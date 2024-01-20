@@ -2,7 +2,11 @@ import { type Express } from "express";
 import mongoose from "mongoose";
 
 // connection string do MongoDB
-export async function connectDB(app: Express, databaseUrl: string, port: number): Promise<void> {
+export async function connectDB(
+  app: Express,
+  databaseUrl: string,
+  port: number,
+): Promise<void> {
   try {
     await mongoose.connect(databaseUrl);
     app.listen(port, () => {
