@@ -1,5 +1,4 @@
 import supertest from "supertest";
-import mockmockApp from "./mockApp";
 import mockApp from "./mockApp";
 
 describe("Todo CRUD", () => {
@@ -8,6 +7,7 @@ describe("Todo CRUD", () => {
       const response = await supertest(mockApp).post("/api/v1/todos").send({
         body: "generic task description",
         isFavorited: false,
+        color: "#FFFFFF",
       });
 
       expect(response.status).toBe(400);
@@ -17,6 +17,7 @@ describe("Todo CRUD", () => {
       const response = await supertest(mockApp).post("/api/v1/todos").send({
         title: "generic task title",
         isFavorited: false,
+        color: "#FFFFFF",
       });
 
       expect(response.status).toBe(400);
@@ -25,6 +26,7 @@ describe("Todo CRUD", () => {
     test("Try to create todo without title and body", async () => {
       const response = await supertest(mockApp).post("/api/v1/todos").send({
         isFavorited: false,
+        color: "#FFFFFF",
       });
 
       expect(response.status).toBe(400);
@@ -44,6 +46,21 @@ describe("Todo CRUD", () => {
       const response = await supertest(mockApp).post("/api/v1/todos").send({
         title: "generic task title",
         body: "generic task description",
+        color: "#FFFFFF",
+      });
+      expect(response.status).toBe(200);
+      expect(response.body).toMatchObject({
+        title: "generic task title",
+        body: "generic task description",
+        color: "#FFFFFF",
+      });
+    });
+
+    test("Try to create todo without color", async () => {
+      const response = await supertest(mockApp).post("/api/v1/todos").send({
+        title: "generic task title",
+        body: "generic task description",
+        isFavorited: false,
       });
       expect(response.status).toBe(200);
       expect(response.body).toMatchObject({
@@ -51,6 +68,18 @@ describe("Todo CRUD", () => {
         body: "generic task description",
         isFavorited: false,
       });
+    });
+  });
+
+  describe("Try to create Todo with wrong hex color format", () => {
+    test("Try to create todo without color", async () => {
+      const response = await supertest(mockApp).post("/api/v1/todos").send({
+        title: "generic task title",
+        body: "generic task description",
+        isFavorited: false,
+        color: "#FFFFFFF",
+      });
+      expect(response.status).toBe(400);
     });
   });
 
