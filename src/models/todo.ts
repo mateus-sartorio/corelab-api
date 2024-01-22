@@ -11,10 +11,12 @@ const todoSchema = new Schema<Todo>({
   title: {
     type: String,
     required: true,
+    default: "Título",
   },
   body: {
     type: String,
     required: true,
+    default: "Criar nota...",
   },
   isFavorited: {
     type: Boolean,
