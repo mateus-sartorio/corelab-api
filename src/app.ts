@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 
-const PORT = 3000;
+const PORT = 4000;
 const databaseUrl = process.env?.MONGODB_ENDPOINT;
 if (databaseUrl === undefined) {
   throw new Error("Database URL not found");

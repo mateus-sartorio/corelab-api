@@ -8,7 +8,7 @@ dotenv.config();
 
 const mockApp = express();
 
-const PORT = 4000;
+const PORT = 5000;
 const databaseUrl = process.env?.MONGODB_MOCK_ENDPOINT;
 if (databaseUrl === undefined) {
   throw new Error("Database URL not found");
